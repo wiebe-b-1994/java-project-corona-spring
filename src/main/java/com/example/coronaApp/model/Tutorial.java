@@ -10,6 +10,8 @@ public class Tutorial {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+
+
     @Column(name = "title")
     private String title;
 
