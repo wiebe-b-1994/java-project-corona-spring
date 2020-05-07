@@ -3,14 +3,12 @@ package com.example.coronaApp.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tutorials")
-public class Tutorial {
+@Table(name = "products")
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-
 
     @Column(name = "title")
     private String title;
@@ -21,11 +19,11 @@ public class Tutorial {
     @Column(name = "published")
     private boolean published;
 
-    public Tutorial() {
+    public Product() {
 
     }
 
-    public Tutorial(String title, String description, boolean published) {
+    public Product(String title, String description, boolean published) {
         this.title = title;
         this.description = description;
         this.published = published;
@@ -61,6 +59,6 @@ public class Tutorial {
 
     @Override
     public String toString() {
-        return "Tutorial [id=" + id + ", title=" + title + ", desc=" + description + ", published=" + published + "]";
+        return "Product [id=" + id + ", title=" + title + ", desc=" + description + ", published=" + published + "]";
     }
 }
