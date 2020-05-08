@@ -65,7 +65,7 @@ public class ProductController2 {
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         try {
             Product _product = productRepository
-                    .save(new Product(product.getTitle(), product.getDescription(), false));
+                    .save(new Product(product.getTitle(), product.getDescription(), product.getPrice(), false));
             return new ResponseEntity<>(_product, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
@@ -80,6 +80,7 @@ public class ProductController2 {
             Product _product = productData.get();
             _product.setTitle(product.getTitle());
             _product.setDescription(product.getDescription());
+            _product.setPrice(product.getPrice());
             _product.setPublished(product.isPublished());
             return new ResponseEntity<>(productRepository.save(_product), HttpStatus.OK);
         } else {
@@ -105,7 +106,6 @@ public class ProductController2 {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
-
     }
 
     @GetMapping("/products/published")
