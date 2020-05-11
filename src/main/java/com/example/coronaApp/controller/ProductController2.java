@@ -65,7 +65,7 @@ public class ProductController2 {
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         try {
             Product _product = productRepository
-                    .save(new Product(product.getTitle(), product.getDescription(), product.getPrice(), false));
+                    .save(new Product(product.getTitle(), product.getDescription(), product.getPrice(), product.getItems()));
             return new ResponseEntity<>(_product, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
@@ -81,7 +81,7 @@ public class ProductController2 {
             _product.setTitle(product.getTitle());
             _product.setDescription(product.getDescription());
             _product.setPrice(product.getPrice());
-            _product.setPublished(product.isPublished());
+            _product.setItems(product.getItems());
             return new ResponseEntity<>(productRepository.save(_product), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -107,19 +107,4 @@ public class ProductController2 {
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
     }
-
-    @GetMapping("/products/published")
-    public ResponseEntity<List<Product>> findByPublished() {
-        try {
-            List<Product> products = productRepository.findByPublished(true);
-
-            if (products.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(products, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-        }
-    }
-
 }

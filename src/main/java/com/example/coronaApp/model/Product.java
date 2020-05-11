@@ -19,18 +19,18 @@ public class Product {
     @Column(name = "price")
     private int price;
 
-    @Column(name = "published")
-    private boolean published;
+    @Column(name = "items")
+    private int items;
 
     public Product() {
 
     }
 
-    public Product(String title, String description, int price, boolean published) {
+    public Product(String title, String description, int price, int items) {
         this.title = title;
         this.description = description;
         this.price = price;
-        this.published = published;
+        this.items = items;
     }
 
     public long getId() {
@@ -57,16 +57,12 @@ public class Product {
 
     public void setPrice(int price) { this.price = price; }
 
-    public boolean isPublished() {
-        return published;
-    }
+    public int getItems() { return items; }
 
-    public void setPublished(boolean isPublished) {
-        this.published = isPublished;
-    }
+    public void setItems(int items) { this.items = items; }
 
     @Override
     public String toString() {
-        return "Product [id=" + id + ", title=" + title + ", desc=" + description + ", price=" + price + "published=" + published + "]";
+        return "Product [id=" + id + ", title=" + title + ", desc=" + description + ", price=" + price + ", items=" + items + "]";
     }
 }
